@@ -52,6 +52,8 @@ class dmcmd(commands.Cog):
             await interaction.response.send_message(
                 content=f"""Unable to set your role, make sure my role is higher than the role you're trying to add!""",
                 ephemeral=True)
+        except Exception as e:
+            print(e)
 
 
 async def setup(bot):
