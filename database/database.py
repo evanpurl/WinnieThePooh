@@ -26,6 +26,7 @@ async def gettoken(botname):
         print(e)
         return e
 
+
 async def getanswer(question):
     try:
         db_config = read_db_config()
