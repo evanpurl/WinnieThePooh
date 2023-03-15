@@ -1,7 +1,7 @@
 import asyncio
 import discord
 from discord.ext import commands
-from database.database import getgreeting, getily, getcompliment
+from database.database import getanswer
 import string
 
 
@@ -18,18 +18,12 @@ class messagefunctions(commands.Cog):
             return
         msg = message.content.lower().translate(str.maketrans('', '', string.punctuation)).split(" ")
         for substring in msg:
-            if substring == "cloe":  # Trigger word
+            if substring is "winnie" or "winnie the pooh":  # Trigger word
                 msg.remove(substring)
                 msg = " ".join(msg)
-                response = await getgreeting(msg)
-                ily = await getily(msg)
-                compliment = await getcompliment(msg)
-                if response:
-                    await message.reply(f"{response} {message.author.name}!")
-                elif ily:
-                    await message.reply(f"{ily} {message.author.name}!")
-                elif compliment:
-                    await message.reply(f"{compliment} {message.author.name}!")
+                answer = await getanswer(msg)
+                if answer:
+                    await message.reply(f"{answer}!")
                 await asyncio.sleep(3)
 
 
