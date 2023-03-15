@@ -18,9 +18,6 @@ class dmcmd(commands.Cog):
     async def dmstatus(self, interaction: discord.Interaction, statuses: app_commands.Choice[int]) -> None:
         try:
             role = discord.utils.get(interaction.guild.roles, name=statuses.name)
-            await interaction.response.defer(ephemeral=True)
-            if not role:
-                role = await interaction.guild.create_role(name=statuses.name)
             # Checks for previous role and removes you from it if you're in it.
             openrole = discord.utils.get(interaction.guild.roles, name="Open DM")
             askrole = discord.utils.get(interaction.guild.roles, name="Ask to DM")
