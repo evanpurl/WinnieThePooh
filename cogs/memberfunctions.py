@@ -33,14 +33,14 @@ class memberfunctions(commands.Cog):
             if role:
                 await member.add_roles(role)
         except discord.Forbidden:
-            wchannel = await dbget(member.guild.id, self.bot.user.name, "welcomechannelid")
+            wchannel = await dbget(member.guild.id, "Winnie", "welcomechannelid")
             channel = discord.utils.get(member.guild.channels, id=wchannel[0])
             if channel:
                 await channel.send(content=f"""Unable to set your role, make sure my role is higher than the role you're trying to add!""")
 
     @commands.Cog.listener()
     async def on_member_remove(self, member):
-        wchannel = await dbget(member.guild.id, self.bot.user.name, "welcomechannelid")
+        wchannel = await dbget(member.guild.id, "Winnie", "welcomechannelid")
         channel = discord.utils.get(member.guild.channels, id=wchannel[0])
         if channel:
             await channel.send(f"Goodbye {member.mention} :(")
@@ -49,7 +49,7 @@ class memberfunctions(commands.Cog):
     @app_commands.command(name="setwelcomechannel", description="Command to set your server's welcome channel.")
     async def welcomechannel(self, interaction: discord.Interaction, channel: discord.TextChannel):
         try:
-            await dbset(interaction.guild.id, self.bot.user.name, "welcomechannelid", channel.id)
+            await dbset(interaction.guild.id, "Winnie", "welcomechannelid", channel.id)
             await interaction.response.send_message(
                 f"Your welcome channel has been set to {discord.utils.get(interaction.guild.channels, id=channel.id)}.",
                 ephemeral=True)
@@ -61,7 +61,7 @@ class memberfunctions(commands.Cog):
     @app_commands.command(name="resetwelcomechannel", description="Command to reset your server's welcome channel.")
     async def resetwelcomechannel(self, interaction: discord.Interaction):
         try:
-            await dbset(interaction.guild.id, self.bot.user.name, "welcomechannelid", 0)
+            await dbset(interaction.guild.id, "Winnie", "welcomechannelid", 0)
             await interaction.response.send_message(f"Welcome channel config has been reset.", ephemeral=True)
         except Exception as e:
             print(e)

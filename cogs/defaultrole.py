@@ -17,7 +17,7 @@ class defrole(commands.Cog):
     @app_commands.command(name="setdefaultrole", description="Slash command for setting your server's Default role.")
     async def defaultrole(self, interaction: discord.Interaction, role: discord.Role):
         try:
-            await dbset(interaction.guild.id, self.bot.user.name, "defaultroleid", role.id)
+            await dbset(interaction.guild.id, "Winnie", "defaultroleid", role.id)
             await interaction.response.send_message(
                 content=f"""You server's default role has been set to {role.name}""", ephemeral=True)
         except Exception as e:
@@ -28,7 +28,7 @@ class defrole(commands.Cog):
     @app_commands.command(name="resetdefaultrole", description="Slash command for resetting your server's Default role.")
     async def resetdefaultrole(self, interaction: discord.Interaction):
         try:
-            await dbset(interaction.guild.id, self.bot.user.name, "defaultroleid", 0)
+            await dbset(interaction.guild.id, "Winnie", "defaultroleid", 0)
             await interaction.response.send_message(f"Default role config has been reset.", ephemeral=True)
         except Exception as e:
             print(e)

@@ -14,7 +14,7 @@ class pingcmd(commands.Cog):
     @app_commands.command(name="ping", description="Slash command to add people to the Ping role.")
     async def ping(self, interaction: discord.Interaction):
         try:
-            prole = await dbget(interaction.guild.id, self.bot.user.name, "pingroleid")
+            prole = await dbget(interaction.guild.id, "Winnie", "pingroleid")
             role = discord.utils.get(interaction.guild.roles, id=prole[0])
             if role:
                 if role in interaction.user.roles:
@@ -39,7 +39,7 @@ class pingcmd(commands.Cog):
     @app_commands.command(name="setpingrole", description="Slash command to set the Ping role.")
     async def setping(self, interaction: discord.Interaction, role: discord.Role):
         try:
-            await dbset(interaction.guild.id, self.bot.user.name, "pingroleid", role.id)
+            await dbset(interaction.guild.id, "Winnie", "pingroleid", role.id)
             await interaction.response.send_message(content=f"""Ping role has been set to {role.name}""",
                                                     ephemeral=True)
         except Exception as e:
@@ -50,7 +50,7 @@ class pingcmd(commands.Cog):
     @app_commands.command(name="resetpingrole", description="Slash command to reset the Ping role.")
     async def resetping(self, interaction: discord.Interaction):
         try:
-            await dbset(interaction.guild.id, self.bot.user.name, "pingroleid", 0)
+            await dbset(interaction.guild.id, "Winnie", "pingroleid", 0)
             await interaction.response.send_message(f"Ping Role config has been reset.", ephemeral=True)
         except Exception as e:
             print(e)
