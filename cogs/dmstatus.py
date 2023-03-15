@@ -26,28 +26,31 @@ class dmcmd(commands.Cog):
             closedrole = discord.utils.get(interaction.guild.roles, name="Closed DM")
             if openrole.name == role.name:
                 if openrole in interaction.user.roles:
-                    await interaction.response.send_message(f"You're already in that role!", ephemeral=True)
-                    return
-            else:
-                if openrole in interaction.user.roles:
+                    await interaction.response.send_message(f"You have been removed from the {statuses.name} role.",
+                                                            ephemeral=True)
                     await interaction.user.remove_roles(openrole)
-            if askrole.name == role.name:
+                else:
+                    await interaction.user.add_roles(role)
+                    await interaction.response.send_message(f"You have been added to the {statuses.name} role.",
+                                                            ephemeral=True)
+            elif askrole.name == role.name:
                 if askrole in interaction.user.roles:
-                    await interaction.response.send_message(f"You're already in that role!", ephemeral=True)
-                    return
-            else:
-                if askrole in interaction.user.roles:
+                    await interaction.response.send_message(f"You have been removed from the {statuses.name} role.",
+                                                            ephemeral=True)
                     await interaction.user.remove_roles(askrole)
-            if closedrole.name == role.name:
+                else:
+                    await interaction.user.add_roles(role)
+                    await interaction.response.send_message(f"You have been added to the {statuses.name} role.",
+                                                            ephemeral=True)
+            elif closedrole.name == role.name:
                 if closedrole in interaction.user.roles:
-                    await interaction.response.send_message(f"You're already in that role!", ephemeral=True)
-                    return
-            else:
-                if closedrole in interaction.user.roles:
+                    await interaction.response.send_message(f"You have been removed from the {statuses.name} role.",
+                                                            ephemeral=True)
                     await interaction.user.remove_roles(closedrole)
-            # End of check
-            await interaction.user.add_roles(role)
-            await interaction.response.send_message(f"You have been added to the {statuses.name} role.", ephemeral=True)
+                else:
+                    await interaction.user.add_roles(role)
+                    await interaction.response.send_message(f"You have been added to the {statuses.name} role.",
+                                                            ephemeral=True)
         except discord.Forbidden:
             await interaction.response.send_message(
                 content=f"""Unable to set your role, make sure my role is higher than the role you're trying to add!""",
