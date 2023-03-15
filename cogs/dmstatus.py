@@ -17,6 +17,7 @@ class dmcmd(commands.Cog):
     ])
     async def dmstatus(self, interaction: discord.Interaction, statuses: app_commands.Choice[int]) -> None:
         try:
+            print(statuses)
             role = discord.utils.get(interaction.guild.roles, name=statuses.name)
             if not role:
                 role = await interaction.guild.create_role(name=statuses.name)
