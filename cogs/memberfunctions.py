@@ -24,11 +24,11 @@ class memberfunctions(commands.Cog):
     @commands.Cog.listener()
     async def on_member_join(self, member):
         try:
-            wchannel = await dbget(member.guild.id, self.bot.user.name, "welcomechannelid")
+            wchannel = await dbget(member.guild.id, "Winnie", "welcomechannelid")
             channel = discord.utils.get(member.guild.channels, id=wchannel[0])
             if channel:
                 await channel.send(embed=userembed(self.bot, member, member.guild))
-            roleid = await dbget(member.guild.id, self.bot.user.name, "defaultroleid")
+            roleid = await dbget(member.guild.id, "Winnie", "defaultroleid")
             role = discord.utils.get(member.guild.roles, id=roleid[0])
             if role:
                 await member.add_roles(role)
