@@ -14,7 +14,9 @@ class gendercmd(commands.Cog):
         app_commands.Choice(name='Male', value=1),
         app_commands.Choice(name='Female', value=2),
         app_commands.Choice(name='Non-Binary', value=3),
-        app_commands.Choice(name='Something Else', value=4),
+        app_commands.Choice(name='Genderfluid', value=4),
+        app_commands.Choice(name='Demigirl', value=5),
+        app_commands.Choice(name='Demiboy', value=6),
     ])
     async def gender(self, interaction: discord.Interaction, genders: app_commands.Choice[int]) -> None:
         try:
