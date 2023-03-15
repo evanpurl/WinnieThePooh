@@ -18,6 +18,8 @@ class dmcmd(commands.Cog):
     async def dmstatus(self, interaction: discord.Interaction, statuses: app_commands.Choice[int]) -> None:
         try:
             role = discord.utils.get(interaction.guild.roles, name=statuses.name)
+            if not role:
+                role = await interaction.guild.create_role(name=statuses.name)
             # Checks for previous role and removes you from it if you're in it.
             openrole = discord.utils.get(interaction.guild.roles, name="Open DM")
             askrole = discord.utils.get(interaction.guild.roles, name="Ask to DM")
@@ -50,8 +52,6 @@ class dmcmd(commands.Cog):
             await interaction.response.send_message(
                 content=f"""Unable to set your role, make sure my role is higher than the role you're trying to add!""",
                 ephemeral=True)
-        except Exception as e:
-            print(e)
 
 
 async def setup(bot):
