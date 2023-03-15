@@ -1,11 +1,8 @@
 import asyncio
 import datetime
-import io
-import chat_exporter
 import discord
 from discord import app_commands, ui
 from discord.ext import commands
-from util.dbsetget import dbget, dbset
 
 timeout = 300  # seconds
 
