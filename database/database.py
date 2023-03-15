@@ -11,7 +11,7 @@ async def gettoken(botname):
         if conn.is_connected():
             c = conn.cursor()
 
-            sql = f"SELECT token from tokens where botname=%(botname)s;"
+            sql = f"SELECT token from token where botname=%(botname)s;"
             user_data = {
                 'botname': botname,
             }
