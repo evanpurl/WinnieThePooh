@@ -18,7 +18,7 @@ class messagefunctions(commands.Cog):
             return
         msg = message.content.lower().translate(str.maketrans('', '', string.punctuation)).split(" ")
         for substring in msg:
-            if substring is "winnie" or "winnie the pooh":  # Trigger word
+            if substring == "winnie":  # Trigger word
                 msg.remove(substring)
                 msg = " ".join(msg)
                 answer = await getanswer(msg)
