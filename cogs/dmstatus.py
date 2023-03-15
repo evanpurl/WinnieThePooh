@@ -24,7 +24,6 @@ class dmcmd(commands.Cog):
             openrole = discord.utils.get(interaction.guild.roles, name="Open DM")
             askrole = discord.utils.get(interaction.guild.roles, name="Ask to DM")
             closedrole = discord.utils.get(interaction.guild.roles, name="Closed DM")
-            print(f"{openrole}, {askrole}, {closedrole}")
             if openrole.name == role.name:
                 if openrole in interaction.user.roles:
                     await interaction.response.send_message(f"You're already in that role!", ephemeral=True)
