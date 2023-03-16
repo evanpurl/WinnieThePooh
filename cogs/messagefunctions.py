@@ -23,6 +23,7 @@ class messagefunctions(commands.Cog):
             if i in msg:
                 msg.remove(i)
                 msg = " ".join(msg)
+                print(msg)
                 answer = await getanswer(msg)
                 response = await getgreeting(msg)
                 ily = await getily(msg)
