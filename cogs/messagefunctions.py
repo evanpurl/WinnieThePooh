@@ -6,6 +6,7 @@ import string
 
 triggerword = ["winnie", "pooh bear", "pooh", "winnie the pooh"]
 
+
 class messagefunctions(commands.Cog):
 
     def __init__(self, bot):
@@ -19,9 +20,11 @@ class messagefunctions(commands.Cog):
             return
         msg = message.content.lower().translate(str.maketrans('', '', string.punctuation)).split(" ")
         for substring in msg:
-            if substring == triggerword[0] or substring == triggerword[1] or substring == triggerword[2] or substring == triggerword[3]:  # Trigger word
+            if substring == triggerword[0] or substring == triggerword[1] or substring == triggerword[2] or substring == \
+                    triggerword[3]:  # Trigger word
                 msg.remove(substring)
                 msg = " ".join(msg)
+                print(msg)
                 answer = await getanswer(msg)
                 response = await getgreeting(msg)
                 ily = await getily(msg)
