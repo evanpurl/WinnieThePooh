@@ -176,3 +176,25 @@ async def getcompliment(compliment):
     except Exception as e:
         print(e)
         return e
+
+
+async def geteeyoremsg():
+    try:
+        db_config = read_db_config()
+        conn = MySQLConnection(**db_config)
+        if conn.is_connected():
+            c = conn.cursor()
+            sql = f"SELECT * from eeyore ORDER BY RAND() LIMIT 1;"
+            c.execute(sql)
+            response = c.fetchone()
+            if not response:
+                return None
+            response = response[0]
+            c.close()
+            conn.close()
+            return response
+        else:
+            return 'Connection to database failed.'
+    except Exception as e:
+        print(e)
+        return e
