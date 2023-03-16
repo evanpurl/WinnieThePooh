@@ -18,12 +18,11 @@ class messagefunctions(commands.Cog):
             return
         if message.author.bot:  # If message is a bot, do nothing
             return
-        msg = message.content.lower().translate(str.maketrans('', '', string.punctuation))
+        msg = message.content.lower().translate(str.maketrans('', '', string.punctuation)).split(" ")
         for i in triggerwords:
             if i in msg:
-                print(i)
-                msg.replace(i, "")
-                print(msg)
+                msg.remove(i)
+                msg = " ".join(msg)
                 answer = await getanswer(msg)
                 response = await getgreeting(msg)
                 ily = await getily(msg)
