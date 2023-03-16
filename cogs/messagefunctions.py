@@ -21,6 +21,7 @@ class messagefunctions(commands.Cog):
         msg = message.content.lower().translate(str.maketrans('', '', string.punctuation))
         for i in triggerwords:
             if i in msg:
+                print(i)
                 msg.replace(i, "")
                 print(msg)
                 answer = await getanswer(msg)
