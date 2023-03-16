@@ -4,8 +4,7 @@ from discord.ext import commands
 from database.database import getanswer, getgreeting, getily, getcompliment
 import string
 
-triggerwords = ["winnie", "pooh bear", "pooh", "winnie the pooh"]
-
+triggerword = ["winnie", "pooh bear", "pooh", "winnie the pooh"]
 
 class messagefunctions(commands.Cog):
 
@@ -19,11 +18,10 @@ class messagefunctions(commands.Cog):
         if message.author.bot:  # If message is a bot, do nothing
             return
         msg = message.content.lower().translate(str.maketrans('', '', string.punctuation)).split(" ")
-        for i in triggerwords:
-            if i in msg:
-                msg.remove(i)
+        for substring in msg:
+            if substring == triggerword[0] or substring == triggerword[1] or substring == triggerword[2] or substring == triggerword[3]:  # Trigger word
+                msg.remove(substring)
                 msg = " ".join(msg)
-                print(msg)
                 answer = await getanswer(msg)
                 response = await getgreeting(msg)
                 ily = await getily(msg)
@@ -36,7 +34,7 @@ class messagefunctions(commands.Cog):
                     await message.reply(f"{ily} {message.author.name}!")
                 elif compliment:
                     await message.reply(f"{compliment} {message.author.name}!")
-                break
+                await asyncio.sleep(3)
 
 
 async def setup(bot):
