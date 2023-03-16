@@ -16,7 +16,7 @@ class messagefunctions(commands.Cog):
     async def on_message(self, message):
         tagged = message.mentions
         if tagged[0].id == self.bot.user.id:
-            msg = message.content.lower().translate(str.maketrans('', '', string.punctuation))
+            msg = message.content.lower().translate(str.maketrans('', '', string.punctuation)).split(" ").replace(self.bot.user.id, "")
             print(msg)
             answer = await getanswer(msg)
             response = await getgreeting(msg)
