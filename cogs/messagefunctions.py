@@ -18,26 +18,24 @@ class messagefunctions(commands.Cog):
             return
         if message.author.bot:  # If message is a bot, do nothing
             return
-        msg = message.content.lower().translate(str.maketrans('', '', string.punctuation)).split(" ")
-        for substring in msg:
-            for i in triggerwords:
-                if substring == i:
-                    print(substring)
-                    msg.remove(substring)
-                    msg = " ".join(msg)
-                    answer = await getanswer(msg)
-                    response = await getgreeting(msg)
-                    ily = await getily(msg)
-                    compliment = await getcompliment(msg)
-                    if answer:
-                        await message.reply(f"{answer}!")
-                    if response:
-                        await message.reply(f"{response} {message.author.name}!")
-                    elif ily:
-                        await message.reply(f"{ily} {message.author.name}!")
-                    elif compliment:
-                        await message.reply(f"{compliment} {message.author.name}!")
-                    await asyncio.sleep(3)
+        msg = message.content.lower().translate(str.maketrans('', '', string.punctuation))
+        for i in triggerwords:
+            if i in msg:
+                print(i)
+                msg.replace(i, "")
+                answer = await getanswer(msg)
+                response = await getgreeting(msg)
+                ily = await getily(msg)
+                compliment = await getcompliment(msg)
+                if answer:
+                    await message.reply(f"{answer}!")
+                if response:
+                    await message.reply(f"{response} {message.author.name}!")
+                elif ily:
+                    await message.reply(f"{ily} {message.author.name}!")
+                elif compliment:
+                    await message.reply(f"{compliment} {message.author.name}!")
+                await asyncio.sleep(3)
 
 
 async def setup(bot):
