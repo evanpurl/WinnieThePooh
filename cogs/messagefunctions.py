@@ -21,8 +21,8 @@ class messagefunctions(commands.Cog):
         msg = message.content.lower().translate(str.maketrans('', '', string.punctuation))
         for i in triggerwords:
             if i in msg:
-                print(i)
                 msg.replace(i, "")
+                print(msg)
                 answer = await getanswer(msg)
                 response = await getgreeting(msg)
                 ily = await getily(msg)
@@ -35,7 +35,7 @@ class messagefunctions(commands.Cog):
                     await message.reply(f"{ily} {message.author.name}!")
                 elif compliment:
                     await message.reply(f"{compliment} {message.author.name}!")
-                await asyncio.sleep(3)
+                break
 
 
 async def setup(bot):
