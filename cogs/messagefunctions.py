@@ -22,6 +22,7 @@ class messagefunctions(commands.Cog):
         for substring in msg:
             for i in triggerwords:
                 if substring == i:
+                    print(substring)
                     msg.remove(substring)
                     msg = " ".join(msg)
                     answer = await getanswer(msg)
