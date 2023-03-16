@@ -18,7 +18,8 @@ class messagefunctions(commands.Cog):
             tagged = message.mentions
             if tagged[0].id == self.bot.user.id:
                 msg = message.content.lower().translate(str.maketrans('', '', string.punctuation)).replace(str(self.bot.user.id), "").split(" ")
-                print(msg)
+                while "" in msg:
+                    msg.remove("")
                 msg = " ".join(msg)
                 answer = await getanswer(msg)
                 response = await getgreeting(msg)
