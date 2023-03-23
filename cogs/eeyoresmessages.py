@@ -20,7 +20,7 @@ class eeyoretask(commands.Cog):
     async def eeyore_message(self):
         try:
             msg = await geteeyoremsg()
-            webhook = SyncWebhook.from_url(url="https://discord.com/api/webhooks/1085769797561761822/IIUn2KzqoOiyqJCEHT9ndznOK_UsK7UHjwVUx1RF9twIUTK0poz2Ji5NSCqrIu40kYVn")
+            webhook = SyncWebhook.from_url(url="webhookurl")
             webhook.send(msg)
 
         except Exception as e:
