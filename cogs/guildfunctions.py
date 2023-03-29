@@ -11,11 +11,11 @@ class guildfunctions(commands.Cog):
 
     @commands.Cog.listener()
     async def on_guild_join(self, guild):
-        await createserver(guild.id, "Winnie", guild.name)  # Creates server row in database
+        await createserver(guild.id, "winnie", guild.name)  # Creates server row in database
 
     @commands.Cog.listener()
     async def on_guild_remove(self, guild):
-        await deleteserver(guild.id, "Winnie")  # Deletes server row in database.
+        await deleteserver(guild.id, "winnie")  # Deletes server row in database.
 
 
 async def setup(bot):
